@@ -35,11 +35,35 @@ export class AppComponent {
     this.resume.educations.push(new Education());
   }
 
-  generatePdf() {
+  generatePdf(action = 'open') {
+    const documentDefinition = this.getDocumentDefinition();
 
+    switch (action) {
+      case 'open': pdfMake.createPdf(documentDefinition).open(); break;
+      case 'print': pdfMake.createPdf(documentDefinition).print(); break;
+      case 'download': pdfMake.createPdf(documentDefinition).download(); break;
+
+      default: pdfMake.createPdf(documentDefinition).open(); break;
+    }
+
+  }
+
+
+  resetForm() {
+    this.resume = new Resume();
+  }
+
+  getDocumentDefinition() {
     sessionStorage.setItem('resume', JSON.stringify(this.resume));
-    const documentDefinition = {
+    return {
       content: [
+        {
+          text: 'RESUME',
+          bold: true,
+          fontSize: 20,
+          alignment: 'center',
+          margin: [0, 0, 0, 20]
+        },
         {
           columns: [
             [{
@@ -48,21 +72,24 @@ export class AppComponent {
             },
             {
               text: this.resume.address
+            },
+            {
+              text: 'Email : ' + this.resume.email,
+              // alignment: 'right'
+            },
+            {
+              text: 'Contant No : ' + this.resume.contactNo,
+              // alignment: 'right'
+            },
+            {
+              text: 'GitHub: ' + this.resume.socialProfile,
+              link: this.resume.socialProfile,
+              color: 'blue',
+              // alignment: 'right'
             }
             ],
             [
-              {
-                text: 'Email : ' + this.resume.email,
-                alignment: 'right'
-              },
-              {
-                text: 'Contant No : ' + this.resume.contactNo,
-                alignment: 'right'
-              },
-              {
-                text: 'GitHub: ' + this.resume.socialProfile,
-                alignment: 'right'
-              }
+              this.getProfilePicObjeect()
             ]
           ]
         },
@@ -82,17 +109,30 @@ export class AppComponent {
           style: 'header'
         },
         {
-          text : this.resume.otherDetails
+          text: this.resume.otherDetails
         },
         {
           text: 'Signature',
           style: 'sign'
         },
         {
-          text : `(${this.resume.name})`,
+          columns : [
+          { qr: this.resume.name + ', Contact No : ' + this.resume.contactNo,
+          // foreground: 'red', background: 'yellow',
+          fit : 100
+        },
+          {
+          text: `(${this.resume.name})`,
           alignment: 'right',
-        }
+          },
+      ]},
       ],
+      info: {
+        title: this.resume.name + '_RESUME',
+        author: this.resume.name,
+        subject: 'RESUME',
+        keywords: 'RESUME, ONLINE RESUME',
+      },
       styles: {
         header: {
           fontSize: 18,
@@ -123,8 +163,6 @@ export class AppComponent {
       }
     };
 
-    console.log(documentDefinition);
-    pdfMake.createPdf(documentDefinition).open();
   }
 
   getExperienceObject(experiences: Experience[]) {
@@ -193,4 +231,33 @@ export class AppComponent {
       }
     };
   }
+
+  getProfilePicObjeect() {
+    if (this.resume.profilePic) {
+      return {
+        image: this.resume.profilePic ,
+        width: 75,
+        alignment : 'right'
+      };
+    }
+    return null;
+  }
+
+  fileChanged(e) {
+    const file = e.target.files[0];
+    this.getBase64(file);
+  }
+
+  getBase64(file) {
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => {
+      console.log(reader.result);
+      this.resume.profilePic = reader.result as string;
+    };
+    reader.onerror = (error) => {
+      console.log('Error: ', error);
+    };
+  }
+
 }

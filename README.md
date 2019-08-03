@@ -1,27 +1,19 @@
-# ResumeBuilder
+# Online Resume Builder
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.1.2.
+Client side pdf generation using angular 8 and pdfmake.
+Export to pdf in Angular 8 and pdfmake
 
-## Development server
+You can generate your resume in pdf format at client side. We do not store any information at server side. it is a pure client side resume builder application. 
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+#Features
 
-## Code scaffolding
+- Personal Details with Social Media hyperlink
+- Profile picture
+- Multiple Experiences and Educational details in table format
+- Other details
+- QR code
+- PDF Open, Print and Download option
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Developed and Maintained By
 
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+This project is developed by [NgDevelop](https://www.ngdevelop.tech/) for the `Export to pdf in Angular 8 using pdfmake` blog.

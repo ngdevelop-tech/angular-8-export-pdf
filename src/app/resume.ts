@@ -1,4 +1,5 @@
 export class Resume {
+    profilePic: string;
     name: string;
     address: string;
     contactNo: number;

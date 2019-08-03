@@ -8,10 +8,12 @@ export class Resume {
     experiences: Experience[] = [];
     educations: Education[] = [];
     otherDetails: string;
+    skills: Skill[] = [];
 
     constructor() {
         this.experiences.push(new Experience());
         this.educations.push(new Education());
+        this.skills.push(new Skill());
     }
 }
 
@@ -30,4 +32,6 @@ export class Education {
     percentage: number;
 }
 
-
+export class Skill {
+    value: string;
+}

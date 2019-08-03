@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import pdfMake from 'pdfmake/build/pdfmake';
 import pdfFonts from 'pdfmake/build/vfs_fonts';
-import { Resume, Experience, Education } from './resume';
+import { Resume, Experience, Education, Skill } from './resume';
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
 @Component({
   selector: 'app-root',
@@ -24,6 +24,10 @@ export class AppComponent {
     if (!this.resume.educations || this.resume.educations.length === 0) {
       this.resume.educations = [];
       this.resume.educations.push(new Education());
+    }
+    if (!this.resume.skills || this.resume.skills.length === 0) {
+      this.resume.skills = [];
+      this.resume.skills.push(new Skill());
     }
   }
 
@@ -91,6 +95,29 @@ export class AppComponent {
             [
               this.getProfilePicObjeect()
             ]
+          ]
+        },
+        {
+          text: 'Skills',
+          style: 'header'
+        },
+        {
+          columns : [
+            {
+              ul : [
+                ...this.resume.skills.filter((value, index) => index % 3 === 0).map(s => s.value)
+              ]
+            },
+            {
+              ul : [
+                ...this.resume.skills.filter((value, index) => index % 3 === 1).map(s => s.value)
+              ]
+            },
+            {
+              ul : [
+                ...this.resume.skills.filter((value, index) => index % 3 === 2).map(s => s.value)
+              ]
+            }
           ]
         },
         {
@@ -258,6 +285,10 @@ export class AppComponent {
     reader.onerror = (error) => {
       console.log('Error: ', error);
     };
+  }
+
+  addSkill() {
+    this.resume.skills.push(new Skill());
   }
 
 }

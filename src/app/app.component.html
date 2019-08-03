@@ -1,7 +1,8 @@
 <nav class="navbar navbar-expand navbar-light bg-primary d-flex justify-content-between">
   <div class="navbar-brand mb-0 h1 text-white">ONLINE RESUME BUILDER</div>
   <div class="navbar-brand mb-0 h1 text-white">
-    <a href="https://github.com/ngdevelop-tech/angular-8-export-pdf" class="text-white h3 mr-3" title="GitHub"><i class="fab fa-github"></i></a>
+    <a href="https://github.com/ngdevelop-tech/angular-8-export-pdf" class="text-white h3 mr-3" title="GitHub"><i
+        class="fab fa-github"></i></a>
     <a href="https://www.ngdevelop.tech/blog/" title="Website" class="text-white h3"><i class="fas fa-globe"></i></a>
 
   </div>
@@ -20,35 +21,28 @@
             <div class="row">
               <div class="col-md-6">
                 <div class="form-group">
-                  <input type="text" class="form-control" [(ngModel)]="resume.name" name="name" placeholder="Name" 
-                  #Name="ngModel" required
-                  [ngClass]="{'is-invalid': Name.invalid && (Name.touched || resumeForm.submitted) }"
-                  >
+                  <input type="text" class="form-control" [(ngModel)]="resume.name" name="name" placeholder="Name"
+                    #Name="ngModel" required
+                    [ngClass]="{'is-invalid': Name.invalid && (Name.touched || resumeForm.submitted) }">
                 </div>
                 <div class="form-group">
                   <div class="form-group">
                     <textarea class="form-control" [(ngModel)]="resume.address" name="address" rows="3"
-                      placeholder="Address"
-                      #Address="ngModel" required
-                  [ngClass]="{'is-invalid': Address.invalid && (Address.touched || resumeForm.submitted) }"
-                      ></textarea>
+                      placeholder="Address" #Address="ngModel" required
+                      [ngClass]="{'is-invalid': Address.invalid && (Address.touched || resumeForm.submitted) }"></textarea>
                   </div>
                 </div>
               </div>
               <div class="col-md-6">
                 <div class="form-group">
                   <input type="text" class="form-control" [(ngModel)]="resume.contactNo" name="contactNo"
-                    placeholder="Contact No."
-                    #ContactNo="ngModel" required
-                    [ngClass]="{'is-invalid': ContactNo.invalid && (ContactNo.touched || resumeForm.submitted) }"
-                    >
+                    placeholder="Contact No." #ContactNo="ngModel" required
+                    [ngClass]="{'is-invalid': ContactNo.invalid && (ContactNo.touched || resumeForm.submitted) }">
                 </div>
                 <div class="form-group">
                   <input type="text" class="form-control" [(ngModel)]="resume.email" name="emailId"
-                    placeholder="Email ID"
-                    #Email="ngModel" required
-                    [ngClass]="{'is-invalid': Email.invalid && (Email.touched || resumeForm.submitted) }"
-                    >
+                    placeholder="Email ID" #Email="ngModel" required
+                    [ngClass]="{'is-invalid': Email.invalid && (Email.touched || resumeForm.submitted) }">
                 </div>
                 <div class="form-group">
                   <input type="text" class="form-control" [(ngModel)]="resume.socialProfile" name="socialProfile"
@@ -60,6 +54,31 @@
           </div>
         </div>
 
+        <!-- Skills -->
+        <div class="shadow-sm card">
+          <div class="card-body">
+            <div class="d-flex justify-content-between card-title">
+              <h4 class="d-flex align-items-center">
+                <i class="material-icons">
+                  timeline
+                </i>
+                Skills</h4>
+              <button class="btn btn-primary" (click)="addSkill()">+</button>
+            </div>
+            <div class="row">
+              <div class="col-md-4" *ngFor="let s of resume.skills; let i=index">
+                <div class="form-group">
+                  <input type="text" class="form-control" name="skill{{i}}" [(ngModel)]="s.value" placeholder="e.g. Java / Angular / .Net "
+                    #Skill="ngModel" required
+                    [ngClass]="{'is-invalid': Skill.invalid && (Skill.touched || resumeForm.submitted) }">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        <!-- Experience -->
         <div class="shadow-sm card">
           <div class="card-body">
             <div class="d-flex justify-content-between card-title">
@@ -74,29 +93,25 @@
               <div class="col-md-6">
                 <div class="form-group">
                   <input type="text" class="form-control" name="employer{{i}}" [(ngModel)]="ex.employer"
-                    placeholder="Employer"
-                    #Employer="ngModel" required
+                    placeholder="Employer" #Employer="ngModel" required
                     [ngClass]="{'is-invalid': Employer.invalid && (Employer.touched || resumeForm.submitted) }">
                 </div>
                 <div class="form-group">
                   <div class="form-group">
                     <textarea class="form-control" name="jobDescription{{i}}" [(ngModel)]="ex.jobDescription" rows="3"
-                      placeholder="Job Description"
-                      ></textarea>
+                      placeholder="Job Description"></textarea>
                   </div>
                 </div>
               </div>
               <div class="col-md-6">
                 <div class="form-group">
                   <input type="text" class="form-control" name="jobTitle{{i}}" [(ngModel)]="ex.jobTitle"
-                    placeholder="Job Title"
-                    #JobTitle="ngModel" required
+                    placeholder="Job Title" #JobTitle="ngModel" required
                     [ngClass]="{'is-invalid': JobTitle.invalid && (JobTitle.touched || resumeForm.submitted) }">
                 </div>
                 <div class="form-group">
                   <input type="number" class="form-control" name="exInMonths{{i}}" [(ngModel)]="ex.experience"
-                    placeholder="Experience in months"
-                    #Experience="ngModel" required
+                    placeholder="Experience in months" #Experience="ngModel" required
                     [ngClass]="{'is-invalid': Experience.invalid && (Experience.touched || resumeForm.submitted) }">
                 </div>
               </div>
@@ -119,9 +134,9 @@
             <div class="row" *ngFor="let ed of resume.educations; let i=index">
               <div class="col-md-3">
                 <div class="form-group">
-                  <select class="form-control" placeholder="Degree" name="degree{{i}}" [(ngModel)]="ed.degree"                  
-                  #Degree="ngModel" required
-                  [ngClass]="{'is-invalid': Degree.invalid && (Degree.touched || resumeForm.submitted) }">
+                  <select class="form-control" placeholder="Degree" name="degree{{i}}" [(ngModel)]="ed.degree"
+                    #Degree="ngModel" required
+                    [ngClass]="{'is-invalid': Degree.invalid && (Degree.touched || resumeForm.submitted) }">
                     <option [value]="d" *ngFor="let d of degrees">{{d}}</option>
                   </select>
                 </div>
@@ -129,28 +144,22 @@
               <div class="col-md-3">
                 <div class="form-group">
                   <input type="text" class="form-control" name="college{{i}}" [(ngModel)]="ed.college"
-                    placeholder="School/College"
-                    #College="ngModel" required
-                    [ngClass]="{'is-invalid': College.invalid && (College.touched || resumeForm.submitted) }"
-                    >
+                    placeholder="School/College" #College="ngModel" required
+                    [ngClass]="{'is-invalid': College.invalid && (College.touched || resumeForm.submitted) }">
                 </div>
               </div>
               <div class="col-md-3">
                 <div class="form-group">
                   <input type="number" class="form-control" name="passingYear{{i}}" [(ngModel)]="ed.passingYear"
-                    placeholder="Passing Year"
-                    #PassingYear="ngModel" required
-                    [ngClass]="{'is-invalid': PassingYear.invalid && (PassingYear.touched || resumeForm.submitted) }"                    
-                    >
+                    placeholder="Passing Year" #PassingYear="ngModel" required
+                    [ngClass]="{'is-invalid': PassingYear.invalid && (PassingYear.touched || resumeForm.submitted) }">
                 </div>
               </div>
               <div class="col-md-3">
                 <div class="form-group">
                   <input type="number" class="form-control" name="result{{i}}" [(ngModel)]="ed.percentage"
-                    placeholder="Percentage"
-                    #Percentage="ngModel" required
-                    [ngClass]="{'is-invalid': Percentage.invalid && (Percentage.touched || resumeForm.submitted) }"                    
-                    >
+                    placeholder="Percentage" #Percentage="ngModel" required
+                    [ngClass]="{'is-invalid': Percentage.invalid && (Percentage.touched || resumeForm.submitted) }">
                 </div>
               </div>
             </div>
@@ -167,8 +176,7 @@
               <div class="col-md-12">
                 <div class="form-group">
                   <textarea type="text" class="form-control" [(ngModel)]="resume.otherDetails" name="otherDetails"
-                    rows="4"
-                    ></textarea>
+                    rows="4"></textarea>
                 </div>
               </div>
             </div>
@@ -194,16 +202,17 @@
               print
             </i><span>Print PDF</span></button>
 
-          <button type='reset' (click)="resetForm()" class="btn btn-primary d-flex align-items-center justify-content-center">
+          <button type='reset' (click)="resetForm()"
+            class="btn btn-primary d-flex align-items-center justify-content-center">
             <i class="material-icons">
               clear
             </i><span>Reset</span></button>
         </div>
 
-        <div class="card">
+        <div class="card p-4">
           <div class="form-group">
-            <label for="">Show your picture in Resume</label>
-            <input type="file" class="form-control-file" (change)="fileChanged($event)"aria-describedby="fileHelpId">
+            <label class="h4 mb-3" for="">Show your picture in Resume</label>
+            <input type="file" class="form-control-file" (change)="fileChanged($event)" aria-describedby="fileHelpId">
           </div>
           <img *ngIf="resume.profilePic" [src]="resume.profilePic" class="img-thumbnail">
         </div>

@@ -4,7 +4,6 @@
     <a href="https://github.com/ngdevelop-tech/angular-8-export-pdf" class="text-white h3 mr-3" title="GitHub"><i
         class="fab fa-github"></i></a>
     <a href="https://www.ngdevelop.tech/blog/" title="Website" class="text-white h3"><i class="fas fa-globe"></i></a>
-
   </div>
 </nav>
 <div class="container-fluid">
@@ -50,7 +49,6 @@
                 </div>
               </div>
             </div>
-
           </div>
         </div>
 
@@ -68,8 +66,8 @@
             <div class="row">
               <div class="col-md-4" *ngFor="let s of resume.skills; let i=index">
                 <div class="form-group">
-                  <input type="text" class="form-control" name="skill{{i}}" [(ngModel)]="s.value" placeholder="e.g. Java / Angular / .Net "
-                    #Skill="ngModel" required
+                  <input type="text" class="form-control" name="skill{{i}}" [(ngModel)]="s.value"
+                    placeholder="e.g. Java / Angular / .Net " #Skill="ngModel" required
                     [ngClass]="{'is-invalid': Skill.invalid && (Skill.touched || resumeForm.submitted) }">
                 </div>
               </div>
@@ -217,8 +215,6 @@
           <img *ngIf="resume.profilePic" [src]="resume.profilePic" class="img-thumbnail">
         </div>
       </div>
-
-
     </div>
   </form>
 </div>

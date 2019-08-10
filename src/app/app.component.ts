@@ -9,7 +9,6 @@ pdfMake.vfs = pdfFonts.pdfMake.vfs;
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'resume-builder';
 
   resume = new Resume();
 
@@ -79,21 +78,18 @@ export class AppComponent {
             },
             {
               text: 'Email : ' + this.resume.email,
-              // alignment: 'right'
             },
             {
               text: 'Contant No : ' + this.resume.contactNo,
-              // alignment: 'right'
             },
             {
               text: 'GitHub: ' + this.resume.socialProfile,
               link: this.resume.socialProfile,
               color: 'blue',
-              // alignment: 'right'
             }
             ],
             [
-              this.getProfilePicObjeect()
+              this.getProfilePicObject()
             ]
           ]
         },
@@ -144,15 +140,13 @@ export class AppComponent {
         },
         {
           columns : [
-          { qr: this.resume.name + ', Contact No : ' + this.resume.contactNo,
-          // foreground: 'red', background: 'yellow',
-          fit : 100
-        },
-          {
-          text: `(${this.resume.name})`,
-          alignment: 'right',
-          },
-      ]},
+              { qr: this.resume.name + ', Contact No : ' + this.resume.contactNo, fit : 100 },
+              {
+              text: `(${this.resume.name})`,
+              alignment: 'right',
+              }
+          ]
+        }
       ],
       info: {
         title: this.resume.name + '_RESUME',
@@ -160,36 +154,32 @@ export class AppComponent {
         subject: 'RESUME',
         keywords: 'RESUME, ONLINE RESUME',
       },
-      styles: {
-        header: {
-          fontSize: 18,
-          bold: true,
-          margin: [0, 20, 0, 10],
-          decoration: 'underline'
-        },
-        name: {
-          fontSize: 16,
-          bold: true
-        },
-        jobTitle: {
-          fontSize: 14,
-          bold: true,
-          italics: true
-        },
-        sign: {
-          margin: [0, 50, 0, 10],
-          alignment: 'right',
-          italics: true
-        },
-        tableHeader: {
-          bold: true,
+        styles: {
+          header: {
+            fontSize: 18,
+            bold: true,
+            margin: [0, 20, 0, 10],
+            decoration: 'underline'
+          },
+          name: {
+            fontSize: 16,
+            bold: true
+          },
+          jobTitle: {
+            fontSize: 14,
+            bold: true,
+            italics: true
+          },
+          sign: {
+            margin: [0, 50, 0, 10],
+            alignment: 'right',
+            italics: true
+          },
+          tableHeader: {
+            bold: true,
+          }
         }
-      },
-      defaultStyle: {
-        columnGap: 20
-      }
     };
-
   }
 
   getExperienceObject(experiences: Experience[]) {
@@ -259,7 +249,7 @@ export class AppComponent {
     };
   }
 
-  getProfilePicObjeect() {
+  getProfilePicObject() {
     if (this.resume.profilePic) {
       return {
         image: this.resume.profilePic ,

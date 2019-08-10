@@ -5,7 +5,7 @@ Export to pdf in Angular 8 and pdfmake
 
 You can generate your resume in pdf format at client side. We do not store any information at server side. it is a pure client side resume builder application. 
 
-#Features
+## Features
 
 - Personal Details with Social Media hyperlink
 - Profile picture
@@ -16,4 +16,4 @@ You can generate your resume in pdf format at client side. We do not store any i
 
 ## Developed and Maintained By
 
-This project is developed by [NgDevelop](https://www.ngdevelop.tech/) for the `Export to pdf in Angular 8 using pdfmake` blog.
+This project is developed by [NgDevelop](https://www.ngdevelop.tech/) for the [Export to pdf in Angular 8 using pdfmake](https://www.ngdevelop.tech/angular-8-export-to-pdf-using-pdfmake/) blog.

@@ -1,8 +1,6 @@
 import { Component } from '@angular/core';
-import pdfMake from 'pdfmake/build/pdfmake';
-import pdfFonts from 'pdfmake/build/vfs_fonts';
 import { Resume, Experience, Education, Skill } from './resume';
-pdfMake.vfs = pdfFonts.pdfMake.vfs;
+declare let pdfMake: any ;
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -39,6 +37,7 @@ export class AppComponent {
   }
 
   generatePdf(action = 'open') {
+    console.log(pdfMake);
     const documentDefinition = this.getDocumentDefinition();
 
     switch (action) {

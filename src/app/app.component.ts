@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Resume, Experience, Education, Skill } from './resume';
+import { ScriptService } from './script.service';
 declare let pdfMake: any ;
 @Component({
   selector: 'app-root',
@@ -12,7 +13,7 @@ export class AppComponent {
 
   degrees = ['B.E.', 'M.E.', 'B.Com', 'M.Com'];
 
-  constructor() {
+  constructor(private scriptService: ScriptService) {
     this.resume = JSON.parse(sessionStorage.getItem('resume')) || new Resume();
     if (!this.resume.experiences || this.resume.experiences.length === 0) {
       this.resume.experiences = [];
@@ -26,6 +27,9 @@ export class AppComponent {
       this.resume.skills = [];
       this.resume.skills.push(new Skill());
     }
+
+    console.log('Loading External Scripts');
+    this.scriptService.load('pdfMake', 'vfsFonts');
   }
 
   addExperience() {
